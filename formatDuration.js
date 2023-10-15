@@ -8,7 +8,7 @@ function formatDuration (incomingSeconds) {
     let minutes = Math.floor(incomingSeconds / 60)
     let hours = Math.floor(minutes / 60)
         minutes = minutes - hours * 60
-    let days = Math.floor(hours / 24)
+    let days = Math.floor(hours / 24) 
         hours = hours - days * 24
     const years =  Math.floor(days / 365)
         days = days - years * 365
