@@ -1,24 +1,7 @@
-function pathFinder(maze,pointers){
-    if(typeof maze === "string"){
-        const dimension = Math.sqrt(maze.length)
-        maze = maze.split("")
-        const mazeConversion = []
-        let index = 0
-        for(i = 0; i < dimension; i++){
-            const row = []
-            for(j = 0; j < dimension; j++){
-                row.push(maze[index])
-                index++
-            }
-            mazeConversion.push(row)
-        }
-        maze = mazeConversion
-    }
+
+const nextLevel = (maze,pointers) => {
     const target = {x:maze.length-1,y:maze[maze.length - 1].length - 1}
     const newPointers = []
-    if(!pointers){      
-        pointers = [{x:0,y:0}]
-    }
     if(pointers.length === 0){
         return false
     }
@@ -74,8 +57,26 @@ function pathFinder(maze,pointers){
         } 
     });
 
-    return pathFinder(maze,newPointers)
-
+    return nextLevel(maze,newPointers)
 }
 
-console.log(pathFinder(".....W.W."))
+function pathFinder(maze){
+    if(typeof maze === "string"){
+        const dimension = Math.sqrt(maze.length)
+        maze = maze.split("")
+        const mazeConversion = []
+        let index = 0
+        for(i = 0; i < dimension; i++){
+            const row = []
+            for(j = 0; j < dimension; j++){
+                row.push(maze[index])
+                index++
+            }
+            mazeConversion.push(row)
+        }
+        maze = mazeConversion
+    }
+    return nextLevel(maze,[{x:0,y:0}])
+}
+
+console.log(pathFinder("....W..W."))
