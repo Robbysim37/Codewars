@@ -6,17 +6,27 @@ const boggleBoard = [
 ]
 
 const boggleSolver = (boggleBoard) => {
-    const newBoard = boggleBoard.map((row,i) => {
-        return row.map((cell,j) => {
-            return {
-                cellValue:cell,
-                isUnused:true,
-                x:j,
-                y:i
-            }
+
+    let rowLength = 0
+    const boggleBoardArr = []
+
+    const checkTop = (index) => {
+        const newIndex = index - rowLength
+        return newIndex >= 0 ? newIndex : null
+    }
+    
+    const checkBottom = (index) => {
+        const newIndex = index + rowLength
+        return newIndex ? newIndex : null
+    }
+
+    boggleBoard.map(currRow => {
+        rowLength++
+        currRow.map(currCell => {
+            boggleBoardArr.push(currCell)
         })
     })
-    
+    console.log(checkTop(4,rowLength))
 }
 
 boggleSolver(boggleBoard)
