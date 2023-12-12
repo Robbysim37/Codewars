@@ -5,7 +5,7 @@ const boggleBoard = [
     ["h","d","b","l"]
 ]
 
-const boggleSolver = (boggleBoard) => {
+const boggleSolver = (boggleBoard,word) => {
 
     let rowLength = 0
     const columnLength = boggleBoard.length
@@ -23,12 +23,32 @@ const boggleSolver = (boggleBoard) => {
 
     const checkLeft = (index) => {
         const newIndex = index - 1
-        return newIndex
+        return index % rowLength !== 0 ? newIndex : null
     }
 
     const checkRight = (index) => {
         const newIndex = index + 1
-        return newIndex
+        return index % rowLength !== rowLength - 1  ? newIndex : null
+    }
+
+    const checkTopLeft = (index) => {
+        const leftIndex = checkLeft(index)
+        return leftIndex ? checkTop(leftIndex) : null
+    }
+
+    const checkTopRight = (index) => {
+        const rightIndex = checkRight(index)
+        return rightIndex ? checkTop(rightIndex) : null
+    }
+
+    const checkBottomLeft = (index) => {
+        const leftIndex = checkLeft(index)
+        return leftIndex ? checkBottom(leftIndex) : null
+    }
+
+    const checkBottomRight = (index) => {
+        const rightIndex = checkRight(index)
+        return rightIndex ? checkBottom(rightIndex) : null
     }
 
     boggleBoard.map(currRow => {
@@ -37,7 +57,6 @@ const boggleSolver = (boggleBoard) => {
             boggleBoardArr.push(currCell)
         })
     })
-    console.log(checkBottom(11))
 }
 
 boggleSolver(boggleBoard)
