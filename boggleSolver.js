@@ -7,9 +7,11 @@ const boggleBoard = [
 
 const boggleSolver = (boggleBoard,word) => {
 
-    let rowLength = 0
+    
+    const rowLength = boggleBoard[0].length
     const columnLength = boggleBoard.length
     const boggleBoardArr = []
+    const letters = word.split("")
 
     const checkTop = (index) => {
         const newIndex = index - rowLength
@@ -52,11 +54,19 @@ const boggleSolver = (boggleBoard,word) => {
     }
 
     boggleBoard.map(currRow => {
-        rowLength++
         currRow.map(currCell => {
-            boggleBoardArr.push(currCell)
+            boggleBoardArr.push({
+                value:currCell,
+                checked:false
+            })
+        })
+    })
+
+    letters.forEach(currLetter => {
+        boggleBoardArr.forEach((currCell,index) => {
+
         })
     })
 }
 
-boggleSolver(boggleBoard)
+boggleSolver(boggleBoard,"t")
